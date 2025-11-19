@@ -1,5 +1,7 @@
 package com.example.aplikasiandroidpertama
 
+import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -24,18 +26,26 @@ class MainActivity : AppCompatActivity() {
             var username = inputUsername.text.toString()
             var password = inputPassword.text.toString()
 
-            if (username.isEmpty()|| password.isEmpty()){
-                Toast.makeText(this, "Username/Password tidak boleh kosong",
+            if (username.isEmpty() || password.isEmpty()) {
+                Toast.makeText(
+                    this, "Username / Password tidak boleh kosong",
                     Toast.LENGTH_LONG)
                     .show()
 
-            }else{
-                Toast.makeText(this, "Username/Password tidak boleh kosong",
-                    Toast.LENGTH_LONG)
+            } else {
+                Toast.makeText(
+                    this, "Proses login . . . .",
+                    Toast.LENGTH_LONG
+                )
                     .show()
-
             }
+        }
+        val buttonDaftar = findViewById<Button>(R.id.buttonDaftar)
 
+        buttonDaftar.setOnClickListener {
+            val intentPindah = Intent(this, PendaftaranActivity::class.java)
+            startActivity(intentPindah)
+            finish()
         }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
