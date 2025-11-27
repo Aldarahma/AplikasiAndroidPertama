@@ -66,6 +66,7 @@ class PendaftaranActivity : AppCompatActivity() {
 
         if(!username.isDigitsOnly()){
             Toast.makeText(this,"Username harus angka!", Toast.LENGTH_LONG).show()
+            return
         }
 
         // 1. Pengecekan Field Kosong
@@ -86,7 +87,7 @@ class PendaftaranActivity : AppCompatActivity() {
 
             intentPindahDashboard.putExtra("NAMA_DEPAN", firstName)
             intentPindahDashboard.putExtra("NAMA_BELAKANG", lastName)
-            intentPindahDashboard.putExtra("USERNAME", username.toIntOrNull() ?: 0)
+            intentPindahDashboard.putExtra("USERNAME", username.toInt() ?: 0)
             intentPindahDashboard.putExtra("EMAIL", email)
 
 
