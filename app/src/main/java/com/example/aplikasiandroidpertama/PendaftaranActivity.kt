@@ -10,6 +10,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.isDigitsOnly
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class PendaftaranActivity : AppCompatActivity() {
     // Deklarasi semua variabel EditText dan Button
@@ -78,6 +81,21 @@ class PendaftaranActivity : AppCompatActivity() {
         // 2. Pengecekan Kecocokan Password
         if (password == confirmPassword) {
             // Logika jika semua field terisi dan password cocok.
+
+            val userToSave = UserEntity(
+                namaDepan = firstName,
+                namaBelakang = lastName,
+                username = username,
+                email = email
+            )
+
+            //Dapatkan instance Database
+            val db = AbsenDatabase.getDatabase(this)
+
+
+            lifecycleScope.launch (Dispatchers.IO){
+                db.userDao().insertUser(userToSave)
+            }
 
             // Modifikasi Dimulai Di Sini
             val fullName = "$firstName $lastName"
