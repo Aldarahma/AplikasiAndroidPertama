@@ -47,8 +47,8 @@ class PendaftaranActivity : AppCompatActivity() {
         editFirstName = findViewById(R.id.editFirstName)
         editLastName = findViewById(R.id.editLastName)
         editPassword = findViewById(R.id.editTextPassword)
-        editConfirmPassword = findViewById(R.id.editTextConfirmPassword)
-        btnSubmit = findViewById(R.id.btnSubmit)
+        editConfirmPassword = findViewById(R.id.editTextPassword)
+        btnSubmit = findViewById(R.id.buttonSubmit)
 
         //Menerapkan Logika Validasi saat tombol kirim ditekan
         btnSubmit.setOnClickListener {
@@ -82,34 +82,30 @@ class PendaftaranActivity : AppCompatActivity() {
         if (password == confirmPassword) {
             // Logika jika semua field terisi dan password cocok.
 
-            val userToSave = UserEntity(
+            val userToSaver = UserEntity (
                 namaDepan = firstName,
                 namaBelakang = lastName,
                 username = username,
-                email = email
+                email = email,
+                password = password
             )
 
-            //Dapatkan instance Database
             val db = AbsenDatabase.getDatabase(this)
-
-
             lifecycleScope.launch (Dispatchers.IO){
-                db.userDao().insertUser(userToSave)
+                db.UserDao().insertUser(userToSaver)
             }
 
             // Modifikasi Dimulai Di Sini
             val fullName = "$firstName $lastName"
             Toast.makeText(this, "User $fullName berhasil didaftarkan.", Toast.LENGTH_LONG).show()
 
-            val intentPindahDashboard  = Intent(this, DashboardActivity::class.java)
+            editUsername.setText("")
+            editEmail.setText("")
+            editFirstName.setText("")
+            editLastName.setText("")
+            editPassword.setText("")
+            editConfirmPassword.setText("")
 
-            intentPindahDashboard.putExtra("NAMA_DEPAN", firstName)
-            intentPindahDashboard.putExtra("NAMA_BELAKANG", lastName)
-            intentPindahDashboard.putExtra("USERNAME", username.toInt() ?: 0)
-            intentPindahDashboard.putExtra("EMAIL", email)
-
-
-            startActivity(intentPindahDashboard)
 
             //Di sini Anda bisa menambahkan fungsi untuk mengirimkan fungsi untuk mengirim data ke server
             //submitFormData()

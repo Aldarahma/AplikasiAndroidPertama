@@ -64,7 +64,7 @@
         android:textAlignment="textEnd" />
 
     <Button
-        android:id="@+id/btnSubmit"
+        android:id="@+id/buttonSubmit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20sp"
