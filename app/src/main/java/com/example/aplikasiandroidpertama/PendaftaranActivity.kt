@@ -107,6 +107,7 @@ class PendaftaranActivity : AppCompatActivity() {
             editConfirmPassword.setText("")
 
 
+
             //Di sini Anda bisa menambahkan fungsi untuk mengirimkan fungsi untuk mengirim data ke server
             //submitFormData()
         } else {

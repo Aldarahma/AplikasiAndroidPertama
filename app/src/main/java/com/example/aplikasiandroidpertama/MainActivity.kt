@@ -58,10 +58,10 @@ class MainActivity : AppCompatActivity() {
                     withContext(Dispatchers.Main) {
                         if (user != null) {
                             //Toast.makeText(this@MainActivity, "User ditemukan", Toast.LENGTH_LONG) .show()
+
                             val intentPindahDashboard  = Intent(this@MainActivity, DashboardActivity::class.java)
 
                             intentPindahDashboard.putExtra("ID", user.id)
-
 
                             startActivity(intentPindahDashboard)
                         } else {
